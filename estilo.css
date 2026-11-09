@@ -28,7 +28,24 @@ em { color: var(--gold); font-style: normal; }
 .ribbon { inset: 0 auto auto 0; width: min(41%, 490px); height: 15rem; background: url("faixa.jpg") left top / contain no-repeat; mask-image: radial-gradient(ellipse at top left, #000 35%, transparent 75%); }
 .ribbon-end { right: 0; bottom: 0; width: min(30%, 280px); height: 6rem; background: url("faixa-base.jpg") right bottom / contain no-repeat; mask-image: linear-gradient(90deg, transparent, #000 50%); }
 .hero-content { padding: .5rem 0 1.2rem; }
-.brand { width: clamp(10.5rem, 24vw, 15.125rem); height: auto; display: block; margin: 0 auto .15rem; border-radius: 50%; }
+.brand-frame { position: relative; isolation: isolate; width: clamp(10.5rem, 24vw, 15.125rem); margin: 0 auto .15rem; }
+.brand { width: 100%; height: auto; display: block; border-radius: 50%; }
+.brand-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mask: url("reflexo.png") center / 100% 100% no-repeat;
+  mix-blend-mode: screen;
+  background: linear-gradient(112deg, transparent 39%, #ffc44b26 45%, #ffdc8580 48.6%, #fff8dce8 50%, #ffe49c66 51.5%, #ffc44b1a 55%, transparent 61%) 145% 0 / 230% 100% no-repeat;
+  animation: brand-reflection 7s ease-in-out .35s infinite;
+}
+@keyframes brand-reflection {
+  0% { background-position: 145% 0; opacity: 0; }
+  5% { opacity: 1; }
+  28% { opacity: 1; }
+  35%, 100% { background-position: -45% 0; opacity: 0; }
+}
 .eyebrow { display: flex; justify-content: center; align-items: center; gap: .85rem; color: #fff0b5; text-transform: uppercase; letter-spacing: .35em; font-size: clamp(.73rem, 1.65vw, 1.05rem); font-weight: 700; margin: .12rem 0 .6rem; }
 .eyebrow::before, .eyebrow::after, .section-title::before, .section-title::after { content: ""; height: 1px; width: clamp(1.3rem, 9vw, 6.5rem); flex: 0 1 auto; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
 h1 { font-size: clamp(1.95rem, 4.12vw, 2.55rem); font-weight: 800; line-height: 1.04; letter-spacing: -.045em; text-wrap: balance; }
@@ -114,4 +131,5 @@ h1 { font-size: clamp(1.95rem, 4.12vw, 2.55rem); font-weight: 800; line-height: 
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
   .reveal.awaiting { opacity: 1; transform: none; }
+  .brand-frame::after { animation: none; opacity: 0; }
 }
