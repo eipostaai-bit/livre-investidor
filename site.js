@@ -21,3 +21,30 @@ if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: re
     }
   }
 }
+
+for (const row of document.querySelectorAll("[data-plan-row]")) {
+  const track = row.querySelector(".plan-track");
+  const controls = row.querySelector(".plan-controls");
+  const previous = row.querySelector("[data-plan-prev]");
+  const next = row.querySelector("[data-plan-next]");
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+
+  function updateControls() {
+    previous.disabled = track.scrollLeft <= 1;
+    next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
+  }
+
+  function move(direction) {
+    const step = track.children[1].offsetLeft - track.children[0].offsetLeft;
+    const index = Math.round(track.scrollLeft / step) + direction;
+    track.scrollTo({ left: index * step, behavior: reducedMotion.matches ? "instant" : "smooth" });
+  }
+
+  previous.addEventListener("click", () => move(-1));
+  next.addEventListener("click", () => move(1));
+  track.addEventListener("scroll", updateControls, { passive: true });
+  window.addEventListener("resize", updateControls);
+  updateControls();
+  controls.hidden = false;
+}
+

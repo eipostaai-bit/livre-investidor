@@ -133,3 +133,79 @@ h1 { font-size: clamp(1.95rem, 4.12vw, 2.55rem); font-weight: 800; line-height: 
   .reveal.awaiting { opacity: 1; transform: none; }
   .brand-frame::after { animation: none; opacity: 0; }
 }
+
+.plans { padding-block: 1.65rem 1.5rem; }
+.plans .section-title { margin-bottom: .45rem; }
+.plans-intro, .plans-note { color: #ded0b9; text-align: center; font-size: .95rem; }
+.plan-row { margin-top: 1.45rem; }
+.plan-heading { display: flex; align-items: center; justify-content: space-between; gap: .65rem; margin-bottom: .5rem; }
+.plan-heading h3 { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .55rem; color: var(--bright); font-size: clamp(1.1rem, 2.7vw, 1.5rem); }
+.plan-heading h3 span { color: #ddc9a2; font-size: .8rem; font-weight: 500; }
+.plan-controls:not([hidden]) { display: flex; flex: none; gap: .4rem; }
+.plan-arrow {
+  display: grid;
+  place-items: center;
+  width: 2.65rem;
+  height: 2.65rem;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--bright);
+  background: linear-gradient(#31200d, #120e09);
+  font: 1.9rem/1 system-ui, sans-serif;
+  cursor: pointer;
+}
+.plan-arrow:hover:not(:disabled) { border-color: var(--bright); }
+.plan-arrow:disabled { opacity: .4; cursor: default; }
+.plan-arrow:focus-visible, .plan-track:focus-visible { outline: 2px solid var(--bright); outline-offset: 2px; }
+.plan-track {
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: clamp(14rem, 32%, 18rem);
+  gap: .95rem;
+  margin: 0;
+  padding: .4rem .3rem .8rem;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-padding-inline: .3rem;
+  scroll-snap-type: x mandatory;
+  scrollbar-color: #a97527 #1b1309;
+  scrollbar-width: thin;
+  list-style: none;
+}
+.plan-card { min-width: 0; scroll-snap-align: start; }
+.plan-art {
+  display: block;
+  padding: 3px;
+  border: 1px solid transparent;
+  border-radius: .85rem;
+  background: linear-gradient(#191109, #191109) padding-box,
+              linear-gradient(145deg, #a57120, #fff0af 24%, #a46c1b 52%, #e8ae46 82%, #7a4913) border-box;
+  box-shadow: 0 0 .45rem #f5af393b;
+}
+.plan-art:hover { box-shadow: 0 0 .65rem #ffcb6270; }
+.plan-art img { display: block; width: 100%; height: auto; border-radius: .6rem; }
+.plan-contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  min-height: 2.75rem;
+  margin-top: .5rem;
+  border: 1px solid #805922;
+  border-radius: .65rem;
+  background: #191209;
+  color: var(--bright);
+  font-size: .92rem;
+  font-weight: 650;
+  text-align: center;
+  text-decoration: none;
+}
+.plan-contact:hover { background: #2e1f0d; border-color: var(--gold); }
+.plan-track a:focus-visible { outline-offset: 1px; }
+.plans-note { margin-top: 1rem; font-size: .84rem; }
+@media (max-width: 570px) {
+  .plan-track { grid-auto-columns: min(83%, 19rem); gap: .75rem; }
+  .plan-arrow { width: 2.45rem; height: 2.45rem; }
+}
+
